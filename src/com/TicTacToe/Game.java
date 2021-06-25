@@ -1,5 +1,9 @@
 package com.TicTacToe;
 
+import java.lang.InterruptedException;
+import java.lang.System;
+import java.lang.Thread;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Game{
@@ -40,6 +44,24 @@ public class Game{
             Thread.sleep(1000);
         }
         System.out.println("Have fun!");
+    }
+
+    public static void displayField() {
+        System.out.println("Game field now looks like this: ");
+        for (int row = 0; row<gameField.length; row++){
+            for (int num=0; num<gameField[0].length; num++){
+                System.out.print(gameField[row][num]+" ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void fillEmptyField(){
+        for(int row = 0; row<gameField.length; row++){
+            for (int num=0; num<gameField[0].length; num++){
+                gameField[row][num]=Sign_Empty;
+            }
+        }
     }
 
 
