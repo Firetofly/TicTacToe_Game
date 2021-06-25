@@ -16,11 +16,6 @@ public class Game{
     private static final char Sign_Empty = '_';
     private static char[][] gameField;
 
-    private static void startGame(){
-        for(int i1=0; i1<=3; i1++){
-
-            }
-        }
     //Initializing game field
     public static void initField(){
         System.out.println("Enter the size of field");
@@ -49,8 +44,8 @@ public class Game{
     public static void displayField() {
         System.out.println("Game field now looks like this: ");
         for (int row = 0; row<gameField.length; row++){
-            for (int num=0; num<gameField[0].length; num++){
-                System.out.print(gameField[row][num]+" ");
+            for (int col=0; col<gameField[0].length; col++){
+                System.out.print(gameField[row][col]+" ");
             }
             System.out.println();
         }
@@ -58,13 +53,19 @@ public class Game{
 
     public static void fillEmptyField(){
         for(int row = 0; row<gameField.length; row++){
-            for (int num=0; num<gameField[0].length; num++){
-                gameField[row][num]=Sign_Empty;
+            for (int col=0; col<gameField[0].length; col++){
+                gameField[row][col]=Sign_Empty;
             }
         }
     }
 
+    public static char[][] getGameField(){
+        return gameField;
+    }
 
+    public static void checkWin(){
+
+    }
 
 
 
