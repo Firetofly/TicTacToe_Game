@@ -6,8 +6,6 @@ import java.lang.InterruptedException;
 public class Game{
 
     static Scanner scan = new Scanner(System.in);
-    /*private boolean Player1_win= false;
-     private boolean Player2_win= false;*/
     public static final char Sign_X = 'X';
     public static final char Sign_O = 'O';
     public static final char Sign_Empty = '_';
@@ -27,12 +25,12 @@ public class Game{
         System.out.println("Welcome to the 'Tic-Tac-Toe' game V1.0");
         System.out.println("Player_1 playing X, Player_2 playing 0");
         Thread.sleep(1000);
-        for(int i=5; i>=0;i--) {
+        for(int i=5; i>0;i--) {
             if (i>1) {
-                System.out.println((i + 1) + " seconds remaining");
+                System.out.println((i) + " seconds remaining");
             }
             else {
-                System.out.println((i + 1) + " second remaining");
+                System.out.println((i) + " second remaining");
             }
             Thread.sleep(1000);
         }
@@ -116,8 +114,8 @@ public class Game{
         game.displayField();
         while(true){
             player1.playerTurn();
+            game.displayField();
             if(game.checkWin(Sign_X)){
-                game.displayField();
                 System.out.println("Player 1 won the game. Congratulation!");
                 break;
             }
@@ -126,16 +124,14 @@ public class Game{
                 game.displayField();
                 break;
             }
-            game.displayField();
             player2.playerTurn();
+            game.displayField();
             if(game.checkWin(Sign_O)){
-                game.displayField();
                 System.out.println("Player 2 won the game. Congratulation!");
                 break;
             }
             if (game.isTableFull()){
                 System.out.println("The game field is full. Draw!");
-                game.displayField();
                 break;
             }
         }
