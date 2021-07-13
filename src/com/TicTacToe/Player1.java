@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Player1 {
     private int column,row;
 
-    public static void player1Turn(){
+    public static void playerTurn(){
         while(true){
             try{
                 Scanner scan = new Scanner(System.in);

@@ -14,17 +14,18 @@ public class Game{
     private static char[][] gameField;
 
     //Initializing game field
-    public static void initField(){
+    public void initField(){
         System.out.println("Enter the size of field");
         setGameField(scan.nextInt());
     }
 
-    public static void setGameField(int fieldSize) {
+    public void setGameField(int fieldSize) {
         gameField= new char [fieldSize][fieldSize];
     }
 
-    public static void greeting() throws InterruptedException {
+    public void greeting() throws InterruptedException {
         System.out.println("Welcome to the 'Tic-Tac-Toe' game V1.0");
+        System.out.println("Player_1 playing X, Player_2 playing 0");
         Thread.sleep(1000);
         for(int i=5; i>=0;i--) {
             if (i>1) {
@@ -48,8 +49,8 @@ public class Game{
         }
     }
 
-    //Fill the gameFiel of empty signs
-    public static void fillEmptyField(){
+    //Fill the gameField of empty signs
+    public void fillEmptyField(){
         for(int row = 0; row<gameField.length; row++){
             for (int col=0; col<gameField[0].length; col++){
                 gameField[row][col]=Sign_Empty;
@@ -61,7 +62,7 @@ public class Game{
         return gameField;
     }
 
-    public static boolean checkWin(char sign){
+    public boolean checkWin(char sign){
         //Check Horizontal or vertical
         for (int i = 0; i < gameField.length; i++) {
             for (int j = 0; j < gameField[0].length; j++) {
@@ -84,7 +85,7 @@ public class Game{
     }
 
     //Check full of table
-    public static boolean isTableFull(){
+    public boolean isTableFull(){
         for(int row=0; row< gameField.length;row++){
             for(int col=0; col< gameField[0].length;col++){
                 if(gameField[row][col]==Sign_Empty)
@@ -103,18 +104,40 @@ public class Game{
     }*/
 
     public static void main(String[] args) throws InterruptedException {
-        System.out.println("Enter the size of game field");
+        Game game= new Game();
+        Player1 player1= new Player1();
+        Player2 player2= new Player2();
+        game.initField();
+        /*System.out.println("Enter the size of game field");
         int size = scan.nextInt();
-        setGameField(size);
-        fillEmptyField();
-        greeting();
-
+        setGameField(size);*/
+        game.fillEmptyField();
+        game.greeting();
+        game.displayField();
         while(true){
-            Player1.player1Turn();
-            if (isTableFull()){
-                System.out.println("The game field is full. Draw!");
+            player1.playerTurn();
+            if(game.checkWin(Sign_X)){
+                game.displayField();
+                System.out.println("Player 1 won the game. Congratulation!");
+                break;
             }
-
+            if (game.isTableFull()){
+                System.out.println("The game field is full. Draw!");
+                game.displayField();
+                break;
+            }
+            game.displayField();
+            player2.playerTurn();
+            if(game.checkWin(Sign_O)){
+                game.displayField();
+                System.out.println("Player 2 won the game. Congratulation!");
+                break;
+            }
+            if (game.isTableFull()){
+                System.out.println("The game field is full. Draw!");
+                game.displayField();
+                break;
+            }
         }
 
     }
