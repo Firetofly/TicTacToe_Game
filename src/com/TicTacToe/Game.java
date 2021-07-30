@@ -22,8 +22,6 @@ public class Game{
     }
 
     public void greeting() throws InterruptedException {
-        System.out.println("Welcome to the 'Tic-Tac-Toe' game V1.0");
-        System.out.println("Player_1 playing X, Player_2 playing 0");
         Thread.sleep(1000);
         for(int i=5; i>0;i--) {
             if (i>1) {
@@ -105,38 +103,69 @@ public class Game{
         Game game= new Game();
         Player1 player1= new Player1();
         Player2 player2= new Player2();
+        Computer computer = new Computer();
         game.initField();
-        /*System.out.println("Enter the size of game field");
-        int size = scan.nextInt();
-        setGameField(size);*/
+        System.out.print("Make your choice:\n1 - Player_1 vs Player_2\n2 - Player vs Computer\nAnswer: ");
+        int answer = scan.nextInt();
         game.fillEmptyField();
-        game.greeting();
-        game.displayField();
+        if (answer==2) {
+            System.out.println("Playing Player vs Computer!\nPlayer playing X, Computer playing O");
+            game.greeting();
+            game.displayField();
+        }
+        else {
+            System.out.println("Playing Player_1 vs Player_2!");
+            game.greeting();
+            game.displayField();
+        }
         while(true){
-            player1.playerTurn();
-            game.displayField();
-            if(game.checkWin(Sign_X)){
-                System.out.println("Player 1 won the game. Congratulation!");
-                break;
-            }
-            if (game.isTableFull()){
-                System.out.println("The game field is full. Draw!");
+            if(answer==2){
+                player1.playerTurn();
+                if(game.checkWin(Sign_X)){
+                    game.displayField();
+                    System.out.println("Player won the game. Congratulation!");
+                    break;
+                }
                 game.displayField();
-                break;
+                if (game.isTableFull()){
+                    game.displayField();
+                    System.out.println("The game field is full. Draw!");
+                    break;
+                }
+                computer.computerTurn();
+                if(game.checkWin(Sign_O)){
+                    game.displayField();
+                    System.out.println("Computer won the game. I'm so sorry!\nGood luck next time!");
+                    break;
+                }
+                game.displayField();
             }
-            player2.playerTurn();
-            game.displayField();
-            if(game.checkWin(Sign_O)){
-                System.out.println("Player 2 won the game. Congratulation!");
-                break;
-            }
-            if (game.isTableFull()){
-                System.out.println("The game field is full. Draw!");
-                break;
+            else{
+                player1.playerTurn();
+                if(game.checkWin(Sign_X)){
+                    game.displayField();
+                    System.out.println("Player 1 won the game. Congratulation!");
+                    break;
+                }
+                game.displayField();
+                if (game.isTableFull()){
+                    game.displayField();
+                    System.out.println("The game field is full. Draw!");
+                    break;
+                }
+                player2.playerTurn();
+                if(game.checkWin(Sign_O)){
+                    game.displayField();
+                    System.out.println("Player 2 won the game. Congratulation!");
+                    break;
+                }
+                game.displayField();
+                if (game.isTableFull()){
+                    game.displayField();
+                    System.out.println("The game field is full. Draw!");
+                    break;
+                }
             }
         }
-
     }
-
-
 }
